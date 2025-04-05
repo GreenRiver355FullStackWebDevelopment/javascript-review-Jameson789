@@ -28,9 +28,15 @@ const reviews = [
 
 window.onload = () => {
   loadReviews(); 
+  renderStars();
   document.querySelector("button").onclick = handleForm;
 } 
 
+function renderStars() {
+  //console.log(calculateStarAverage(reviews));
+  const p = document.querySelector(".starRating");
+  p.textContent = "Star rating: " + calculateStarAverage(reviews);
+} 
 
 function handleForm(event) {
   event.preventDefault();
@@ -46,7 +52,8 @@ function handleForm(event) {
 
   reviews.push(newReview);
   const reviewArea = document.querySelector(".reviews");
-  addElement(newReview, reviewArea)
+  addElement(newReview, reviewArea);
+  renderStars();
   console.log(reviews);
 }
 
