@@ -1,4 +1,5 @@
 import { calculateStarAverage } from "./logic.js";
+
 //Do not change //////////////////////////////////
 const reviews = [
   {
@@ -27,7 +28,27 @@ const reviews = [
 
 window.onload = () => {
   loadReviews(); 
+  document.querySelector("button").onclick = handleForm;
 } 
+
+
+function handleForm(event) {
+  event.preventDefault();
+
+  console.log("submitted!");
+
+  const newReview = {
+    username: document.querySelector("#username").value,
+    image: document.querySelector("#image").value,
+    star: Number(document.querySelector("#star").value),
+    review: document.querySelector("#review").value
+  }
+
+  reviews.push(newReview);
+  const reviewArea = document.querySelector(".reviews");
+  addElement(newReview, reviewArea)
+  console.log(reviews);
+}
 
 
 function loadReviews() {
