@@ -26,22 +26,22 @@ const reviews = [
 
 //Your Code Below Here////
 
+// Runs when the page loads: loads reviews, renders star average, and sets up form handler
 window.onload = () => {
   loadReviews(); 
   renderStars();
   document.querySelector("button").onclick = handleForm;
 } 
 
+// Calculates and displays the average star rating
 function renderStars() {
-  //console.log(calculateStarAverage(reviews));
   const p = document.querySelector(".starRating");
   p.textContent = "Star rating: " + calculateStarAverage(reviews);
 } 
 
+// Handles the form submission: adds a new review and updates the display
 function handleForm(event) {
   event.preventDefault();
-
-  console.log("submitted!");
 
   const newReview = {
     username: document.querySelector("#username").value,
@@ -54,18 +54,17 @@ function handleForm(event) {
   const reviewArea = document.querySelector(".reviews");
   addElement(newReview, reviewArea);
   renderStars();
-  console.log(reviews);
 }
 
-
+// Loads and displays all reviews from the array
 function loadReviews() {
   const reviewArea = document.querySelector(".reviews");
   for(let review of reviews){
-    //console.log(review);
     addElement(review, reviewArea);
   }
 }
 
+// Creates and appends HTML elements for a single review
 function addElement(review, reviewArea){
   const container = document.createElement('div');
   container.className = "review_container"; 
